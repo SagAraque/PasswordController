@@ -10,7 +10,7 @@ import java.util.Base64;
 
 /**
  * @author Sergio Araque
- * @version 1.2
+ * @version 1.0
  */
 public class PasswordController {
     private String key_algorithm, cipher_list;
