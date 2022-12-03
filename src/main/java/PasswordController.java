@@ -4,6 +4,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Base64;
@@ -117,6 +118,17 @@ public class PasswordController {
         sr.nextBytes(bytes);
 
         return encode(bytes);
+    }
+
+    /**
+     * Convert de provided data in a hash using SHA-256
+     * @param data Data to be hashed
+     * @return SHA-256 hash
+     * @throws NoSuchAlgorithmException
+     */
+    public String hashData(String data) throws NoSuchAlgorithmException {
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        return encode(digest.digest(data.getBytes(StandardCharsets.UTF_8)));
     }
 
     /**
